@@ -11,6 +11,7 @@ if ',' in hashtags:
 
 else:
     keywords=[].append(hashtags)
+print('keywords queues ',keywords)
 
 DATE_START = str(datetime.datetime.today().date() - datetime.timedelta(days=1))
 
