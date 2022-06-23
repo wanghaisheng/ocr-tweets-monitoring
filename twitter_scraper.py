@@ -2,26 +2,9 @@ import datetime
 import os
 # import twint
 import pathlib
-hashtags = os.getenv('hashtags').strip()
-outdir = os.getenv('outdir').strip()
-print('input hashtags ',hashtags)
-keywords=[]
-if ',' in hashtags:
-    keywords = hashtags.split(',')
 
-else:
-    keywords=keywords.append(hashtags)
-print('keywords queues ',keywords)
 
-DATE_START = str(datetime.datetime.today().date() - datetime.timedelta(days=1))
-
-DATA_PATH = pathlib.Path(outdir.replace('/','')+"/")
-DATA_PATH.mkdir(parents=True, exist_ok=True)
-# MAX_RESULT = 100
-# DATE_END = '2020-05-08'
-JSON_FILENAME = DATA_PATH / str(datetime.datetime.today().date())
-
-def sns_scrape(keyword):
+def sns_scrape(keyword,DATE_START,JSON_FILENAME):
     os.system(f'snscrape --jsonl --progress --since {DATE_START} twitter-hashtag "{keyword}" > {JSON_FILENAME}.json')
 
     # with end date
@@ -46,9 +29,26 @@ def scrape_twint():
 
 
 if __name__ == "__main__":
-    # scrape_twint()
+    hashtags = os.getenv('hashtags').strip()
+    outdir = os.getenv('outdir').strip()
+    print('input hashtags ',hashtags)
+    keywords=[]
+    if ',' in hashtags:
+        keywords = hashtags.split(',')
+
+    else:
+        keywords=keywords.append(hashtags)
+    print('keywords queues ',keywords)
+
+    DATE_START = str(datetime.datetime.today().date() - datetime.timedelta(days=1))
+
+    DATA_PATH = pathlib.Path(outdir.replace('/','')+"/")
+    DATA_PATH.mkdir(parents=True, exist_ok=True)
+    # MAX_RESULT = 100
+    # DATE_END = '2020-05-08'
+    JSON_FILENAME = DATA_PATH / str(datetime.datetime.today().date())
     for keyword in keywords:
-        sns_scrape(keyword)
+        sns_scrape(keyword,DATE_START,JSON_FILENAME)
 
 
 # reference
