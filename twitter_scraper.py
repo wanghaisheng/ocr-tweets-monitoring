@@ -38,7 +38,7 @@ if __name__ == "__main__":
         print('keywords queues1 ',keywords)
 
     else:
-        keywords=keywords.append(hashtags)
+        keywords=keywords.extends(hashtags)
         print('keywords queues2 ',keywords)
 
     DATE_START = str(datetime.datetime.today().date() - datetime.timedelta(days=1))
