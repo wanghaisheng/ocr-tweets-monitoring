@@ -35,10 +35,11 @@ if __name__ == "__main__":
     keywords=[]
     if ',' in hashtags:
         keywords = hashtags.split(',')
+        print('keywords queues ',keywords)
 
     else:
         keywords=keywords.append(hashtags)
-    print('keywords queues ',keywords)
+        print('keywords queues ',keywords)
 
     DATE_START = str(datetime.datetime.today().date() - datetime.timedelta(days=1))
 
