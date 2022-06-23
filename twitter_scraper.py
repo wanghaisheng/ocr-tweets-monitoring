@@ -4,7 +4,7 @@ import os
 import pathlib
 hashtags = os.getenv('hashtags').strip()
 outdir = os.getenv('outdir').strip()
-
+print('input hashtags ',hashtags)
 keywords=[]
 if ',' in hashtags:
     keywords = hashtags.split(',')
